@@ -34,4 +34,4 @@ function getExpectancy(nation) {
 	});
 }
 
-module.exports.getExpectancy = getExpectancy;
+module.exports.getExpectancy = getExpectancy

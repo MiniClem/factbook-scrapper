@@ -14,18 +14,19 @@ function getExpectancy(nation) {
 	return new Promise((resolve, reject) => {
 		rp(options)
 			.then(($) => {
-				let json = {
-					life_expectancy: []
-				};
+				let jsonArray = [];
 
 				$('#field-life-expectancy-at-birth').find('.subfield').each(function (i, elem) {
-					json.life_expectancy.push({
-						"genre": $(this).children('.subfield-name').text().replace(':', ''),
-						"age": $(this).children('.subfield-number').text().replace(' years', ''),
-					})
+					let json = {};
+					json['nation_code'] = nation;
+					json['genre'] = $(this).children('.subfield-name').text().replace(':', '');
+					json['age'] = $(this).children('.subfield-number').text().replace(' years', '');
+					jsonArray.push(json);
 				});
 
-				resolve(json);
+				console.log(jsonArray);
+
+				resolve(jsonArray);
 			})
 			.catch((err) => {
 				console.error(err);
